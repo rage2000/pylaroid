@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "91a37d7936a625b71e4dc7aa78ddfb06fcde238f2d6a1ed83b7631170dd8de2d"
+            "sha256": "a3788f6aa96b43a4e045ec20e74345b25acb6f2ae3923e2e9c96142308517581"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -30,10 +30,6 @@
             ],
             "index": "pypi",
             "version": "==7.0"
-        },
-        "e1839a8": {
-            "editable": true,
-            "path": "."
         },
         "pathtools": {
             "hashes": [
@@ -119,6 +115,10 @@
             ],
             "markers": "python_version != '3.1.*' and python_version != '3.2.*' and python_version >= '2.6' and python_version != '3.0.*' and python_version < '4'",
             "version": "==4.5.1"
+        },
+        "e1839a8": {
+            "editable": true,
+            "path": "."
         },
         "flake8": {
             "hashes": [

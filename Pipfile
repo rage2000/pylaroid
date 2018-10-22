@@ -6,13 +6,13 @@ name = "pypi"
 [packages]
 watchdog = "*"
 pip = "==18.0"
-"e1839a8" = {editable = true, path = "."}
 click = "*"
 
 [dev-packages]
 pytest = "*"
 "flake8" = "*"
 pytest-coverage = "*"
+"e1839a8" = {editable = true, path = "."}
 
 [requires]
 python_version = "3.6"
