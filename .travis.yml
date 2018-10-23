@@ -25,8 +25,5 @@ matrix:
 # command to install dependencies
 install:
   - "pip install -r requirements.d/travis.txt"
-  - "pip install python-coveralls"
 # command to run tests
 script: pytest
-after_success:
-  - coveralls
