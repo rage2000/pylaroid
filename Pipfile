@@ -7,6 +7,9 @@ name = "pypi"
 watchdog = "*"
 pip = "==18.0"
 click = "*"
+wand = "*"
+pillow = "*"
+reportlab = "*"
 
 [dev-packages]
 pytest = "*"
