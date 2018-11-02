@@ -5,9 +5,9 @@ import click
 import time
 import logging
 from watchdog.observers import Observer
-from watchdog.events import LoggingEventHandler
 
 from pylaroid import __version__
+from pylaroid.file_handler import PhotoEventHandler
 
 
 @click.command()
@@ -21,9 +21,9 @@ def cli_frontend(path, version):
 
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s',
                         datefmt='%Y-%m-%d %H:%M:%S')
-    event_handler = LoggingEventHandler()
+    event_handler = PhotoEventHandler()
     observer = Observer()
-    observer.schedule(event_handler, path, recursive=True)
+    observer.schedule(event_handler, path, recursive=False)
     observer.start()
     try:
         while True:
