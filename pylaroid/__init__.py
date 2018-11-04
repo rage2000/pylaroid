@@ -22,4 +22,4 @@ def _extract_version(package_name):
     return _conf["metadata"]["version"]
 
 
-__version__ = _extract_version("ca_anlyser")
+__version__ = _extract_version("pylaroid")
