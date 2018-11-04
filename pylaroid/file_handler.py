@@ -15,11 +15,12 @@ class PhotoEventHandler(FileSystemEventHandler):
         super(PhotoEventHandler, self).on_created(event)
 
         what = 'directory' if event.is_directory else 'file'
-        logging.info("Created %s: %s", what, event.src_path)
-        if not self.photo_sheet:
-            root_path = dirname(event.src_path)
-            self.photo_sheet = PhotoSheet(root_path)
-        self.photo_sheet.add_photo(event.src_path)
+        if what == 'file' and event.src_path.lower().endswith('.jpg'):
+            logging.info("Created %s: %s", what, event.src_path)
+            if not self.photo_sheet:
+                root_path = dirname(event.src_path)
+                self.photo_sheet = PhotoSheet(root_path)
+            self.photo_sheet.add_photo(event.src_path)
 
 #    def on_moved(self, event):
 #        super(PhotoEventHandler, self).on_moved(event)
