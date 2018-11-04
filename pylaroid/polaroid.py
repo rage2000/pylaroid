@@ -6,7 +6,6 @@ from wand.image import Image
 from wand.api import library
 from wand.color import Color
 from wand.drawing import Drawing
-from wand.display import display
 from datetime import datetime
 
 library.MagickAutoGammaImage.argtypes = (ctypes.c_void_p,)  # MagickWand *
@@ -19,15 +18,20 @@ class SelfDevPhoto(object):
         root_path = dirname(filepath)
         self.working_path = join(root_path, "polaroid", filename)
         img = Image(filename=filepath)
+        if img.orientation == 'left_bottom':
+            img.rotate(-90)
+        if img.orientation == 'right_top':
+            img.rotate(90)
+        if img.orientation == 'bottom_right':
+            img.rotate(180)
+        print("orientation: {}".format(img.orientation))
         print("largeur:{}  hauteur:{}".format(img.width, img.height))
         if img.width > img.height:
             size = img.height
             coord_x, coord_y = (img.width//2 - size//2, 0)
-            rotate = 0
         else:
             size = img.width
             coord_x, coord_y = (0, img.height//2 - size//2)
-            rotate = 1
         coord = (coord_x, coord_y, coord_x + size, coord_y + size)
         img.crop(*coord)
         self.save(img)
@@ -37,8 +41,6 @@ class SelfDevPhoto(object):
         self.vignette()
         img = Image(filename=self.working_path)
         img.resize(width=930, height=930)
-        if rotate:
-            img = img.rotate(90)
         with Color('gray') as border:
             img.border(border, 6, 6)
         with Color('White') as bg:
