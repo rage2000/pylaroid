@@ -28,9 +28,9 @@ send it to printer.
     :alt: PyPI Package latest release
     :target: https://pypi.python.org/pypi/pylaroid
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/rage2000/pylaroid/0.0.1.svg
+.. |commits-since| image:: https://img.shields.io/github/commits-since/rage2000/pylaroid/0.0.6.svg
     :alt: Commits since latest release
-    :target: https://github.com/rage2000/pylaroid/compare/0.0.1...master
+    :target: https://github.com/rage2000/pylaroid/compare/0.0.6...master
 
 .. |wheel| image:: https://img.shields.io/pypi/wheel/pylaroid.svg
     :alt: PyPI Wheel
