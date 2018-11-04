@@ -74,8 +74,9 @@ class SelfDevPhoto(object):
         default = {'filename': self.working_path,
                    'width': self.image.width,
                    'height': self.image.height}
-        cformat = {**default, **kwargs}
-        command = command.format(**cformat)
+        context = default.copy()
+        context.update(kwargs)
+        command = command.format(**context)
         error = subprocess.check_output(command, shell=True,
                                         stderr=subprocess.STDOUT)
         return error
