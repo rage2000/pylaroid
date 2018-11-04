@@ -1,6 +1,7 @@
 import logging
 import subprocess
-from os.path import join, exists
+import shutil
+from os.path import join, exists, split
 from os import makedirs
 from pylaroid.polaroid import SelfDevPhoto
 from pylaroid.pdf import generate_pdf
@@ -25,13 +26,19 @@ class PhotoSheet(object):
                 makedirs(join(root_path, path))
 
     def add_photo(self, file_path):
-        if file_path not in self.paths and 'pola' not in file_path:
+        if file_path not in self.paths:
             self.paths.append(file_path)
             self.generate_polaroid(file_path)
+            self.move_original(file_path)
         if self.counter == self.photo_by_sheet:
             self.generate_sheet()
         if self.generated:
             self.reset()
+
+    def move_original(self, file_path):
+        split_path = split(file_path)
+        new_path = join(split_path[0], 'original', split_path[1])
+        shutil.move(file_path, new_path)
 
     def generate_polaroid(self, file_path):
         image = SelfDevPhoto(file_path, logo=self.logo)
