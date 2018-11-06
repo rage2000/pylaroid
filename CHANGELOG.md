@@ -3,6 +3,15 @@ Changelog
 
 Revision history for pylaroid.
 
+0.0.7 (2018-11-06)
+------------------
+
+Changes
+~~~~~~~
+
+* :sparkles: Convert logo into srgb mode and print it on all footer            
+* :art: Improve logging messages
+
 0.0.6 (2018-11-04)
 ------------------
 
