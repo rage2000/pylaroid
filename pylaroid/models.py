@@ -32,6 +32,9 @@ class PhotoSheet(object):
             self.move_original(file_path)
         if self.counter == self.photo_by_sheet:
             self.generate_sheet()
+        else:
+            need = self.photo_by_sheet - self.counter
+            logging.info("Need %i more images for generate pdf\n\n" % need)
         if self.generated:
             self.reset()
 
@@ -39,18 +42,21 @@ class PhotoSheet(object):
         split_path = split(file_path)
         new_path = join(split_path[0], 'original', split_path[1])
         shutil.move(file_path, new_path)
+        logging.info("Original image moved to %s" % new_path)
 
     def generate_polaroid(self, file_path):
         image = SelfDevPhoto(file_path, logo=self.logo)
         self.polaroid.append(image.working_path)
+        logging.info("Polaroid generated at %s" % image.working_path)
         self.counter += 1
 
     def print_pdf(self, pdf_path):
-        logging.info("Printing pdf file: %s" % pdf_path)
+        logging.info("Printing pdf file: %s\n\n" % pdf_path)
         subprocess.call(['lpr', pdf_path])
 
     def generate_sheet(self):
-        logging.info("We generate sheet with\n: %s" % "- ".join(self.polaroid))
+        logging.info("We'll generate pdf sheet with: %s" %
+                     "\n- ".join(self.polaroid))
         pdf_path = generate_pdf(self.polaroid, self.root_path)
         logging.info("Into pdf file: %s" % pdf_path)
         self.print_pdf(pdf_path)

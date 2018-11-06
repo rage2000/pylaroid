@@ -24,8 +24,6 @@ class SelfDevPhoto(object):
             img.rotate(90)
         if img.orientation == 'bottom_right':
             img.rotate(180)
-        print("orientation: {}".format(img.orientation))
-        print("largeur:{}  hauteur:{}".format(img.width, img.height))
         if img.width > img.height:
             size = img.height
             coord_x, coord_y = (img.width//2 - size//2, 0)
