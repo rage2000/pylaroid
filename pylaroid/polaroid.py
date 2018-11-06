@@ -49,8 +49,10 @@ class SelfDevPhoto(object):
         new_img.composite(img, 60-6, 60-6)
         if logo:
             with Image(filename=logo) as logo:
-                logo.resize(height=250, width=792)
-                new_img.composite(logo, 129, 1002)
+                if logo.colorspace not in ['rgb', 'srgb']:
+                    logo.transform_colorspace('srgb')
+                logo.resize(height=262, width=1050)
+                new_img.composite(logo, 0, 996)
         if label:
             with Drawing() as draw:
                 draw.font = 'JMH_Typewriter.otf'
